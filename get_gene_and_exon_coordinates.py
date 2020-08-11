@@ -46,10 +46,10 @@ def get_coords(geneMarker):
 				for i in range(len(infoList)):
 					if (infoList[i][0] != "X" and infoList[i][0] != "Y"):
 						e.write(infoList[i][0]+"\t"+infoList[i][1]+"\t"+infoList[i][2]+"\t"+geneNameg+"\n")
-f.close()
-g.close()
-h.close()
-e.close()
+	f.close()
+	g.close()
+	h.close()
+	e.close()
 
 
 if __name__ == '__main__':
