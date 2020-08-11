@@ -71,7 +71,7 @@ do
 	bedtools sort -i ${genes[i]} > "${genes[i]::-4}_sorted.bed"
 	bedtools subtract -a "${genes[i]::-4}_sorted.bed" -b ${exons[i]}  > "${genes[i]::-9}introns.bed"
 	# outputs introns
-  bedtools flank -i "${genes[i]::-4}_sorted.bed" -g ../../../hg38.chrom.sizes.sorted -b 20000 | bedtools subtract -a stdin -b "${genes[i]::-4}_sorted.bed" > "${genes[i]::-4}_20KBflank.bed"
+  bedtools flank -i "${genes[i]::-4}_sorted.bed" -g hg38.chrom.sizes -b 20000 | bedtools subtract -a stdin -b "${genes[i]::-4}_sorted.bed" > "${genes[i]::-4}_20KBflank.bed"
   # outputs 20 kilobase flanking regions from genes
 done
 rm genes/*genes_sorted.bed
