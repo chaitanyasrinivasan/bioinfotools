@@ -9,5 +9,5 @@ Files :
 Usage:
 
 ```shell
-./map_genes.sh
+bash map_genes.sh
 ```
