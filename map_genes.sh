@@ -103,3 +103,4 @@ done
 mv introns/*_and_flanks.bed introns_and_flanks/
 
 echo "Done."
+exit 0
