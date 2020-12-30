@@ -43,7 +43,7 @@ Dependencies:
 
 Description:
 
-This is SVM classifier extracts Haralick texture features to produce a matrix of direction-specific descriptors for each image. The SVM achieves a classification accuracy of 0.96 on the test set.
+This non-linear SVM classifier extracts Haralick texture features to produce a matrix of direction-specific descriptors for each image. These features include ASM, contrast, dissimilarity, homogeneity, energy, and correlation measured across the horizontal, vertical, and diagonal planes. The SVM achieves a classification accuracy of 0.96 on the test set.
 
 Usage:
 
