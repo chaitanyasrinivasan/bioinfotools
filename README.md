@@ -12,7 +12,7 @@ Dependencies:
 	- sys
 - [bedtools](https://bedtools.readthedocs.io/en/latest/)
 - [GENCODE Human Release 33](https://www.gencodegenes.org/human/release_33.html)
-- wget(https://www.gnu.org/software/wget/)
+- [wget](https://www.gnu.org/software/wget/)
 
 Description:
 
