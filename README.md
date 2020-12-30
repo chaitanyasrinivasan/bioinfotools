@@ -51,3 +51,25 @@ Usage:
 python hela_svm.py
 ```
 
+## Automated Cell Counter
+
+File:
+- count_cells.py
+
+Dependencies:
+- [Python 3](https://docs.anaconda.com/anaconda/install/)
+	- glob
+	- numpy
+	- cv2
+	- scipy
+
+
+Description:
+
+This program reads in PNG fluorescent microscopy images as 8-bit images and uses local adaptive thresholding to segment and automatically count the number of cells. The images are preprocessed using Gaussian blurring, and the sigma parameter for this filter can be tuned in accordance with the input image quality.
+
+Usage:
+
+```python
+python count_cells.py
+```
