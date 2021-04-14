@@ -5,6 +5,7 @@ import skimage
 from skimage.feature import greycoprops, greycomatrix
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
+from sklearn.mixture import GaussianMixture
 import matplotlib.pyplot as plt
 
 def load_data(files):
@@ -50,10 +51,11 @@ def PCA_fit(samples, labels):
   plt.xlabel('component 1')
   plt.ylabel('component 2')
   plt.colorbar()
-  plt.show()
+  plt.savefig("pca_haralick.png", dpi=300)
+  return projected
 
 def tSNE_fit(samples, labels):
-    tsne = TSNE(n_components=2, perplexity=10, init='random')
+    tsne = TSNE(n_components=2, perplexity=12, init='random')
     projected = tsne.fit_transform(samples)
     plt.scatter(projected[:, 0], projected[:, 1],
             c=labels, edgecolor='none', alpha=0.5,
@@ -64,19 +66,34 @@ def tSNE_fit(samples, labels):
     plt.colorbar()
     plt.show()
 
+def GMM_fit(projected):
+    gm = GaussianMixture(n_components=12, random_state=0).fit(projected)
+    yhat = gm.predict(projected)
+    print(yhat)
+    sys.exit()
+    fig = plt.figure()
+    plt.scatter(projected[:, 0], projected[:, 1], c=yhat, s=40, cmap='viridis')
+    plt.xlabel('Principal Component 1')
+    plt.ylabel('Principal Component 2')
+    plt.colorbar()
+    plt.show()
+
 if __name__ == "__main__":
-  load_state = False
+  load_state = True
 
   if load_state:
     print("loading data...")
     labels = np.load("labels.npy", allow_pickle=True)
     samples = np.load("samples.npy", allow_pickle=True)
     print("performing dimensionality reduction...")
-    PCA_fit(samples, labels)
-
-
+    projected = PCA_fit(samples, labels)
+    fig = plt.figure()
+    plt.suptitle("Distribution of Haralick Texture Features")
+    plt.xlabel("Haralick Texture Features")
+    plt.boxplot(samples)
+    plt.savefig("boxplot_haralick.png", dpi=300)
   else:
-    imgs = glob.glob("TargetActivation.V4_03-31-21_04;05;40/*f05d1.PNG")
+    imgs = glob.glob("TargetActivation.V4_03-31-21_04;05;40/*f04d1.PNG")
     labels = np.array([int(img.split("/")[1].split("_")[2][1:3]) for img in imgs])
     np.save("labels.npy", labels, allow_pickle=True)
     print("loading images...")
@@ -89,4 +106,5 @@ if __name__ == "__main__":
     np.save("samples.npy", samples, allow_pickle=True)
     print("performing PCA...")
     PCA_fit(samples, labels)
+
     
