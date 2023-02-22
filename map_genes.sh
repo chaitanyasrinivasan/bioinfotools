@@ -15,7 +15,7 @@
 #output: .bed files in introns_and_flanks/
 
 #CHECK DEPENDENCIES
-if [ -x "$(command -v bedtools)" ]
+if ! command -v bedtools &> /dev/null
 then
   echo "Error: bedtools not executable"
   exit 1
